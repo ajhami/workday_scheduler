@@ -33,10 +33,45 @@ textarea{
 .row {
   white-space: pre-wrap;
   height: 80px;
-  border-top: 1px solid white;;
+  border-top: 1px solid white;
+}
+
+.key_label {
+  font-size: large;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  color: #000000;
+  border-left: 2px solid #000000;
+  border-top-left-radius: 50%;
+  border-bottom-left-radius: 50%;
+  border-right: 1px solid #000000;
+  border-top: 2px solid #000000;
+  border-bottom: 2px solid #000000;
+}
+
+.key {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: large;
+  border-top: 2px solid #000000;
+  border-bottom: 2px solid #000000;
+}
+
+.key_end {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: large;
+  border-top: 2px solid #000000;
+  border-bottom: 2px solid #000000;
+  border-right: 2px solid #000000;
 }
 
 .hour {
+  font-size: large;
   background-color: #ffffff;
   color: #000000;
   border-top: 1px dashed #000000;
@@ -48,12 +83,12 @@ textarea{
 }
 
 .present {
-  background-color: #ff6961;
+  background-color: #0c57f8;
   color: white;
 }
 
 .future {
-  background-color: #77dd77;
+  background-color: #01f1f1;
   color: white;
 }
 
@@ -63,9 +98,27 @@ textarea{
   border-bottom-right-radius: 15px;
   background-color: #06AED5;
   color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .saveBtn i:hover {
   font-size: 20px;
   transition: all .3s ease-in-out;
+}
+
+.clear_btn {
+  font-size: x-large;
+  font-weight: bold;
+  background-color: rgba(228, 35, 35, 0.856);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #383737d3;
+  border-radius: 50%;
+  height: 150px;
+  width: 150px;
+  margin-bottom: 20px;
 }
