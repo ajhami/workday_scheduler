@@ -9,6 +9,6 @@ This repository contains the source files to a workday scheduler. Users can open
 
 The application also utilizes functions from moment.js to keep track of date and time in real time. jQuery is utilized for simpler, more efficient JavaScript.
 
-![Work Day Scheduler](./assets/images/scheduler_screenshot.png)
+![Work Day Scheduler](./assets/images/scheduler_screenshot.PNG)
 
 © 2020 Alexander James Hamilton. All Rights Reserved.
