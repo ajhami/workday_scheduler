@@ -1,3 +1,7 @@
+/*
+  style.css
+*/
+
 body {
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
@@ -74,7 +78,7 @@ textarea{
   font-size: large;
   background-color: #ffffff;
   color: #000000;
-  border-top: 1px dashed #000000;
+  border-top: 2px solid #000000;
 }
 
 .past {
@@ -94,8 +98,8 @@ textarea{
 
 .saveBtn {
   border-left: 1px solid black;
-  border-top-right-radius: 15px;
-  border-bottom-right-radius: 15px;
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
   background-color: #06AED5;
   color: white;
   display: flex;
@@ -106,6 +110,14 @@ textarea{
 .saveBtn i:hover {
   font-size: 20px;
   transition: all .3s ease-in-out;
+}
+
+.save_img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80%;
+  width: 80%;
 }
 
 .clear_btn {

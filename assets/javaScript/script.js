@@ -1,42 +1,31 @@
-/*
-    script.js
-*/
+/////////////////
+/// script.js ///
+/////////////////
 
-
-// PSEUDOCODE
-//
-//
-// MOMENT.JS HEADER DISPLAY
 
 var hourlyMemos = JSON.parse(localStorage.getItem("hourlyMemos")) || [];
-var hourIDs = ["#hour9am", "#hour10am", "#hour11am", "#hour12am", "#hour1pm", "#hour2pm", "#hour3pm", "#hour4pm", "#hour5pm"];
+var hourIDs = ["#hour9am", "#hour10am", "#hour11am", "#hour12pm", "#hour1pm", "#hour2pm", "#hour3pm", "#hour4pm", "#hour5pm"];
 
 $(document).ready(function() {
     
+    // Current date displayed
     $("#currentDay").text(moment().format("dddd, MMMM Do, YYYY"));
+    // Current time displayed
     $("#currentTime").text(moment().format('hh:mm:ssa'));
     
-    // Time interval to set up the display time and update to the second
+    // Time interval to update display time to the second
     setInterval(function() {
         $("#currentTime").text(moment().format('hh:mm:ssa'));
         
-        // Update the date when the time passes midnight
-        if(moment().format('hh:mm:ssa') === "12:00:01am") {
-            $("#currentDay").text(moment().format("dddd, MMMM Do, YYYY"));
+        // Page will be reloaded at the turn of each hour to update currentHour and date if necessary
+        if(moment().format('mm:ss') === "00:03") {
+            location.reload();
         }
     }, 1000);
 
-    //var timeAtLoadFloat = parseFloat(moment().format('hh:mm:ssa'));
-    //console.log("Load Time as a Value = " + timeAtLoadFloat);
     var currentHour = moment().hours();
-    //console.log(currentHour);
 
-    // TEST VARIABLE
-    //currentHour = 17;
-
-    // Create colorHours function that uses the current time and colors the input boxes accordingly
-    // HINT: find a way to create integer out of time
-    // Also add attributes of classes from style.css accordlingly
+    // Use the current time and colors the input boxes accordingly
     var setCurrentHour = function(currentHour) {
         
         // 9AM
@@ -110,83 +99,6 @@ $(document).ready(function() {
 
     setCurrentHour(currentHour);
 
-    // add future class to each time block
-    // once time value is greater than a certain time, remove future class and add past and present accoringly
-
-
-
-
-    /* TESTING ARRAY PROPERTIES
-    console.log(hourlyMemos[0]);
-
-    if(hourlyMemos[0] === undefined) {
-        console.log("[0] = empty");
-    }
-    else {
-        console.log("[0] = " + hourlyMemos[0])
-    }
-
-    console.log(hourlyMemos[1]);
-
-    if(hourlyMemos[1] === undefined) {
-        console.log("[1] = empty");
-    }
-    else {
-        console.log("[1] = " + hourlyMemos[1])
-    }
-
-    hourlyMemos[3] = "Brush teeth";
-    console.log(hourlyMemos[2]);
-
-    if(hourlyMemos[2] === undefined) {
-        console.log("[2] = empty");
-    }
-    else {
-        console.log("[2] = " + hourlyMemos[2])
-    }
-
-    console.log(hourlyMemos[3]);
-
-    if(hourlyMemos[3] === undefined) {
-        console.log("[3] = empty");
-    }
-    else {
-        console.log("[3] = " + hourlyMemos[3])
-    }
-
-    hourlyMemos[2] = "something else";
-    $(hourlyMemos[3]).empty();
-
-    console.log(hourlyMemos[2]);
-
-    if(hourlyMemos[2] === undefined) {
-        console.log("[2] = empty");
-    }
-    else {
-        console.log("[2] = " + hourlyMemos[2])
-    }
-
-    console.log(hourlyMemos[3]);
-
-    if(hourlyMemos[3] === undefined) {
-        console.log("[3] = empty");
-    }
-    else {
-        console.log("[3] = " + hourlyMemos[3])
-    }
-    */
-
-
-
-
-
-
-    // NOTE:
-    // hourlyMemos is for setting to localStorage
-    // hourlyMemosStored is for retrieving from local storage
-
-
-
 
     // Create postMemos function
     var postMemos = function(hourBlockID, index) {
@@ -194,60 +106,24 @@ $(document).ready(function() {
         var hourlyMemosStored = JSON.parse(localStorage.getItem("hourlyMemos")) || [];
         
         if(hourlyMemosStored[index] === null || hourlyMemosStored[index] === "") {
-            //console.log("No Memo at this location.");
             return;
         }
+
         else {
-            //console.log("There is a memo at this location");
             $(hourBlockID).attr("value", hourlyMemosStored[index]);
         }
     }
 
-    // postMemos TESTS
-    //hourlyMemos[1] = "It's 10am!";
-    //hourlyMemos[2] = "11am is now yet on your schedule!";
-    //localStorage.setItem("hourlyMemos", JSON.stringify(hourlyMemos));
-    //var lookAtLS = JSON.parse(localStorage.getItem("hourlyMemos")) || [];
-    //console.log("What's currently in localStorage:");
-    //console.log(lookAtLS);
-    //postMemos("#hour9am", 0);
-    //postMemos("#hour10am", 1);
-    //postMemos("#hour9am", 2);
-
-
-
-    // Create renderMemos function
-    //var hourIDs = ["#hour9am", "#hour10am", "#hour11am"];
     var renderMemos = function() {
-    // var hourlyMemosStored = JSON.parse(localStorage.getItem("hourlyMemos")) || []; <= PROBABLY DON't NEED HERE WITH LINE NOW IN POSTMEMOS FUNCTION
-    // then use postMemos function on each hour block
-    // postMemos("#hour9am", 0);
-    // postMemos("#hour10am", 1);
-    // etc... (Bonus - find a way to loop through with for loop; ex: postMemos(hourBlocks[i], i))
         for(var i = 0; i < hourIDs.length; i++) {
             postMemos(hourIDs[i], i);
         }
     }
-    //
-    //
-    //
+
     renderMemos();
 
-    
-    
-    
-    // BONUS: Create a Key
-    // Three Columns colored with description
-    // CHECK
 
-    //console.log("9am = " + $("#hour9am").val());
-    //console.log("10am = " + $("#hour10am").val());
-    //console.log("11am = " + $("#hour11am").val());
-
-    
-
-    // Entered text is saved to localStorage (Name it the saveMemo function and prevent default)
-    // submit event listener function passes through 2 arguments:
+    // Entered text is saved to localStorage
     var saveMemo = function(hourBlockID, index) {
         // arg1: id of the form
         //      ex: "#hour9am"
@@ -261,6 +137,9 @@ $(document).ready(function() {
         localStorage.setItem("hourlyMemos", JSON.stringify(hourlyMemos));
         renderMemos();
     }
+
+
+    // Event listeners for storing memos for each hour block
 
     $("#hour9amSave").on("click", function(event) {
         event.preventDefault();
@@ -307,23 +186,26 @@ $(document).ready(function() {
         saveMemo("#hour5pm", 8);
     });
 
+    // Clear All event listener
     $(".clear_btn").on("click", function(){
+        
+        // Verify if the user wants to clear out schedule
         var wantToClear = confirm('Your entire schedule will be cleared out.\nPress "OK" to continue.');
+        
         if(!wantToClear) {
             return;
         }
+
         else {
             localStorage.clear();
             renderMemos();
+
             for(var i = 0; i < hourIDs.length; i++){
                 $(hourIDs[i]).attr("value", "");
             }
-            //location.reload();
+
+            hourlyMemos = JSON.parse(localStorage.getItem("hourlyMemos")) || [];
         }
     });
 
-
 });
-
-// BONUS: Create a clear button!
-// for each hour as well as a clear all at the bottom for you to clear all (add alert)
