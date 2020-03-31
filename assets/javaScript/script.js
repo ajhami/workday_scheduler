@@ -25,10 +25,90 @@ $(document).ready(function() {
             $("#currentDay").text(moment().format("dddd, MMMM Do, YYYY"));
         }
     }, 1000);
-    
+
+    //var timeAtLoadFloat = parseFloat(moment().format('hh:mm:ssa'));
+    //console.log("Load Time as a Value = " + timeAtLoadFloat);
+    var currentHour = moment().hours();
+    //console.log(currentHour);
+
+    // TEST VARIABLE
+    //currentHour = 17;
+
     // Create colorHours function that uses the current time and colors the input boxes accordingly
     // HINT: find a way to create integer out of time
     // Also add attributes of classes from style.css accordlingly
+    var setCurrentHour = function(currentHour) {
+        
+        // 9AM
+        if(currentHour > 8) {
+            $("#hour9am").removeClass("future");
+            $("#hour9am").addClass("present");
+        }
+        // 10AM
+        if(currentHour > 9) {
+            $("#hour9am").removeClass("present");
+            $("#hour9am").addClass("past");
+            $("#hour10am").removeClass("future");
+            $("#hour10am").addClass("present");
+        }
+        // 11AM
+        if(currentHour > 10) {
+            $("#hour10am").removeClass("present");
+            $("#hour10am").addClass("past");
+            $("#hour11am").removeClass("future");
+            $("#hour11am").addClass("present");
+        }
+        // 12pm
+        if(currentHour > 11) {
+            $("#hour11am").removeClass("present");
+            $("#hour11am").addClass("past");
+            $("#hour12pm").removeClass("future");
+            $("#hour12pm").addClass("present");
+        }
+        // 1PM
+        if(currentHour > 12) {
+            $("#hour12pm").removeClass("present");
+            $("#hour12pm").addClass("past");
+            $("#hour1pm").removeClass("future");
+            $("#hour1pm").addClass("present");
+        }
+        // 2PM
+        if(currentHour > 13) {
+            $("#hour1pm").removeClass("present");
+            $("#hour1pm").addClass("past");
+            $("#hour2pm").removeClass("future");
+            $("#hour2pm").addClass("present");
+        }
+        // 3PM
+        if(currentHour > 14) {
+            $("#hour2pm").removeClass("present");
+            $("#hour2pm").addClass("past");
+            $("#hour3pm").removeClass("future");
+            $("#hour3pm").addClass("present");
+        }
+        // 4PM
+        if(currentHour > 15) {
+            $("#hour3pm").removeClass("present");
+            $("#hour3pm").addClass("past");
+            $("#hour4pm").removeClass("future");
+            $("#hour4pm").addClass("present");
+        }
+        // 5PM
+        if(currentHour > 16) {
+            $("#hour4pm").removeClass("present");
+            $("#hour4pm").addClass("past");
+            $("#hour5pm").removeClass("future");
+            $("#hour5pm").addClass("present");
+        }
+        // PASSED 5PM
+        if(currentHour > 17) {
+            $("#hour5pm").removeClass("present");
+            $("#hour5pm").addClass("past");
+        }
+
+    }
+
+    setCurrentHour(currentHour);
 
     // add future class to each time block
     // once time value is greater than a certain time, remove future class and add past and present accoringly
